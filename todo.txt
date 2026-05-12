@@ -1,2 +1,3 @@
 Finish writing the next update for my password generator.
 Release my next project.
+revise for mock exams
