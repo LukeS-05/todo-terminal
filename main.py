@@ -21,7 +21,13 @@ while True:
         todo = input()
         tasks.append(todo)
         writeToFile(tasks)
-
+    
+    elif command.startswith("mod"):
+        todo = int(input())
+        newtext = input()
+        tasks[todo-1] = newtext
+        writeToFile(tasks)
+        
     elif command.startswith("del"):
         todo = int(input())
         tasks.remove(tasks[todo-1])
