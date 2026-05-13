@@ -3,7 +3,7 @@ def writeToFile(tasks):
         for i in range(0, len(tasks)):
             f.write(f"{tasks[i]}\n")
      
-    # main code
+# main code
 with open("todo.txt", "r") as f:
         tasks = []
         for line in f:
@@ -17,21 +17,33 @@ while True:
         print(f"{i+1} - {tasks[i]}")
         
     command = input()
-    if command.startswith("add"):
-        todo = input()
-        tasks.append(todo)
-        writeToFile(tasks)
-    
-    elif command.startswith("mod"):
-        todo = int(input())
-        newtext = input()
-        tasks[todo-1] = newtext
-        writeToFile(tasks)
-        
-    elif command.startswith("del"):
-        todo = int(input())
-        tasks.remove(tasks[todo-1])
-        writeToFile(tasks)
-        
-    elif command.startswith("exit"):
-        raise SystemExit
+    cmdlist = command.split(" | ")
+    print(cmdlist)
+    match cmdlist[0]:
+        case "add":
+            if len(cmdlist) < 2:
+                print("Invalid arguments - Format - add | <task name>")
+                continue
+            todo = cmdlist[1]
+            tasks.append(todo)
+            writeToFile(tasks)
+        case "mod":
+            if len(cmdlist) < 2:
+                print("Invalid arguments - Format - mod | <task number> | <new text>")
+                continue
+            todo = int(cmdlist[1])
+            newtext = cmdlist[2]
+            tasks[todo-1] = newtext
+            writeToFile(tasks)
+        case "del":
+            if len(cmdlist) < 2:
+                print("Invalid arguments - Format - del | <task number>")
+                continue
+            todo = int(cmdlist[1])
+            tasks.remove(tasks[todo-1])
+            writeToFile(tasks)
+        case "clear":
+            tasks = []
+            writeToFile(tasks)
+        case "exit":
+            raise SystemExit

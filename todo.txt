@@ -1,3 +1,0 @@
-Finish writing the next update for my password generator.
-Release my next project.
-Install Git
