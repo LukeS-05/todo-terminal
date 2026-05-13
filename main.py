@@ -1,3 +1,5 @@
+version = "0.1.1"
+
 def writeToFile(tasks):
     with open("todo.txt", "w") as f:
         for i in range(0, len(tasks)):
@@ -10,15 +12,15 @@ with open("todo.txt", "r") as f:
             todo = line.replace("\n", "")
             tasks.append(todo)
 
+print(f"To-Do CLI v{version}")
 while True:
-    print("To do list")
+    print("-"*90)
         
     for i in range(0, len(tasks)):
         print(f"{i+1} - {tasks[i]}")
         
     command = input()
     cmdlist = command.split(" | ")
-    print(cmdlist)
     match cmdlist[0]:
         case "add":
             if len(cmdlist) < 2:
@@ -40,7 +42,7 @@ while True:
                 print("Invalid arguments - Format - del | <task number>")
                 continue
             todo = int(cmdlist[1])
-            tasks.remove(tasks[todo-1])
+            del tasks[todo-1]
             writeToFile(tasks)
         case "clear":
             tasks = []
