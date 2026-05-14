@@ -12,7 +12,7 @@ with open("todo.txt", "r") as f:
             todo = line.replace("\n", "")
             tasks.append(todo)
 
-print(f"To-Do CLI v{version}")
+print(f"✅ To-Do CLI v{version}")
 while True:
     print("-"*90)
         
@@ -22,14 +22,14 @@ while True:
     command = input(">> ")
     cmdlist = command.split("|")
     match cmdlist[0]:
-        case "add":
+        case "add" | "+":
             if len(cmdlist) < 2:
                 print("Invalid arguments - Format - add | <task name>")
                 continue
             todo = cmdlist[1]
             tasks.append(todo)
             writeToFile(tasks)
-        case "mod":
+        case "mod" | "~":
             if len(cmdlist) < 3:
                 print("Invalid arguments - Format - mod | <task number> | <new text>")
                 continue
@@ -52,7 +52,7 @@ while True:
             
             tasks[swap1], tasks[swap2] = tasks[swap2], tasks[swap1]
             writeToFile(tasks)
-        case "del":
+        case "del" | "-":
             if len(cmdlist) < 2:
                 print("Invalid arguments - Format - del | <task number>")
                 continue
@@ -70,7 +70,7 @@ while True:
                 print("Successfully cleared todo list.")
             else:
                 print("Cancelled")
-        case "help":
+        case "help" | "?":
             print("Coming soon")
-        case "exit":
+        case "exit" | "x":
             raise SystemExit
