@@ -1,7 +1,10 @@
+import webbrowser
+
 version = "0.1.3"
 
+file = "todo.txt"
 def writeToFile(tasks):
-    with open("todo.txt", "w") as f:
+    with open(file, "w") as f:
         for i in range(0, len(tasks)):
             f.write(f"{tasks[i]}\n")
     
@@ -29,6 +32,7 @@ while True:
             todo = cmdlist[1]
             tasks.append(todo)
             writeToFile(tasks)
+            
         case "mod" | "~":
             if len(cmdlist) < 3:
                 print("Invalid arguments - Format - mod | <task number> | <new text>")
@@ -71,6 +75,8 @@ while True:
             else:
                 print("Cancelled")
         case "help" | "?":
-            print("Coming soon")
+            webbrowser.open("https://lukes-05.github.io/docs/todo-terminal/Help.html")
+        case "update":
+            webbrowser.open("https://github.com/LukeS-05/todo-terminal/releases/latest")
         case "exit" | "x":
             raise SystemExit
